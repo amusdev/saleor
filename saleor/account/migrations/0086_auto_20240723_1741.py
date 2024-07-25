@@ -12,11 +12,13 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name="user",
             name="full_name",
-            field=models.CharField(blank=True, max_length=512),
+            field=models.CharField(blank=True, default="", max_length=512),
         ),
         migrations.RunSQL(
             """
-            UPDATE account_user SET full_name = '';
+            ALTER TABLE account_user
+            ALTER COLUMN full_name
+            SET DEFAULT '';
             """,
             migrations.RunSQL.noop,
         ),
