@@ -2,7 +2,7 @@ from collections.abc import Iterable
 from decimal import Decimal
 from typing import TYPE_CHECKING, TypeVar
 
-from babel.numbers import get_currency_precision
+# from babel.numbers import get_currency_precision
 from prices import Money, TaxedMoney, TaxedMoneyRange
 
 if TYPE_CHECKING:
@@ -12,7 +12,8 @@ PriceType = TypeVar("PriceType", TaxedMoney, Money, Decimal, TaxedMoneyRange)
 
 
 def quantize_price(price: PriceType, currency: str) -> PriceType:
-    precision = get_currency_precision(currency)
+    # precision = get_currency_precision(currency)
+    precision = 1
     number_places = Decimal(10) ** -precision
     return price.quantize(number_places)
 
